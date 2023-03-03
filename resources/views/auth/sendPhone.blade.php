@@ -40,80 +40,77 @@
 <!-- BEGIN: Body-->
 
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
-<!-- BEGIN: Content-->
-<div class="app-content content ">
-    <div class="content-overlay"></div>
-    <div class="header-navbar-shadow"></div>
-    <div class="content-wrapper">
-        <div class="content-header row">
-        </div>
-        <div class="content-body">
-            <div class="auth-wrapper auth-basic px-2">
-                <div class="auth-inner my-2">
-                    <!-- Login basic -->
-                    <div class="card mb-0">
-                        <div class="card-body">
-                            <a href="index.html" class="brand-logo">
-                                <img src="icon.png" width="24" alt="">
-
-                            </a>
-
-                            <h4 class="card-title mb-1">Tizimga kirish</h4>
-
-                            <form class="auth-login-form mt-2" action="{{ route('verify') }}" method="POST">
-                                @csrf
-                                <div class="mb-1">
-                                    <label for="login" class="form-label">Tastiqlash code</label>
-                                    <input type="text" class="@error('password') border border-danger  @enderror form-control" id="login" name="otp" placeholder="tastiqlash kodini kiriting  kiriting" aria-describedby="login" tabindex="1" autofocus />
-                                    @error('otp')
-                                    <div class="text-danger ">
-                                        {{$message}}
-                                    </div>
-                                    @enderror
-                                </div>
-
-                                <button class="btn btn-primary w-100" tabindex="4">Kirish</button>
-                            </form>
-
-                        </div>
-                    </div>
-                    <!-- /Login basic -->
-                </div>
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
             </div>
+            <div class="content-body">
+                <div class="auth-wrapper auth-basic px-2">
+                    <div class="auth-inner my-2">
+                        <!-- Login basic -->
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <a href="index.html" class="brand-logo">
+                                    <img src="icon.png" width="24" alt="">
 
+                                </a>
+
+
+
+                                <form class="auth-login-form mt-2" action="{{ route('send') }}" method="POST">
+                                    @csrf
+                                    <div class="mb-1">
+                                        <label for="login" class="form-label">Telefon raqami kiriting</label>
+                                        <input type="text" class="form-control" id="login" name="phone" placeholder="telefon raqamini  kiriting" aria-describedby="login" tabindex="1" autofocus />
+                                    </div>
+
+
+
+                                    <button class="btn btn-primary w-100" tabindex="4">Kirish</button>
+                                </form>
+
+                            </div>
+                        </div>
+                        <!-- /Login basic -->
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
-<!-- END: Content-->
+    <!-- END: Content-->
 
 
-<!-- BEGIN: Vendor JS-->
-<script src="assets/js/core/vendors.min.js"></script>
-<!-- BEGIN Vendor JS-->
+    <!-- BEGIN: Vendor JS-->
+    <script src="assets/js/core/vendors.min.js"></script>
+    <!-- BEGIN Vendor JS-->
 
-<!-- BEGIN: Page Vendor JS-->
-<script src="assets/js/plugins/jquery.validate.min.js"></script>
-<!-- END: Page Vendor JS-->
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="assets/js/plugins/jquery.validate.min.js"></script>
+    <!-- END: Page Vendor JS-->
 
-<!-- BEGIN: Theme JS-->
-<script src="assets/js/core/app-menu.min.js"></script>
-<script src="assets/js/core/app.min.js"></script>
-<!-- END: Theme JS-->
+    <!-- BEGIN: Theme JS-->
+    <script src="assets/js/core/app-menu.min.js"></script>
+    <script src="assets/js/core/app.min.js"></script>
+    <!-- END: Theme JS-->
 
-<!-- BEGIN: Page JS-->
-<script src="assets/js/core/auth-login.min.js"></script>
-<!-- END: Page JS-->
+    <!-- BEGIN: Page JS-->
+    <script src="assets/js/core/auth-login.min.js"></script>
+    <!-- END: Page JS-->
 
-<script>
-    $(window).on('load', function() {
-        if (feather) {
-            feather.replace({
-                width: 14,
-                height: 14
-            });
-        }
-    })
-</script>
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>
 </body>
 <!-- END: Body-->
 

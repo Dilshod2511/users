@@ -19,7 +19,12 @@ Route::get('login',[App\Http\Controllers\Auth\LoginController::class,'index'])->
 Route::post('login',[App\Http\Controllers\Auth\LoginController::class,'login']);
 Route::get('register',[App\Http\Controllers\Auth\RegisterController::class,'index'])->name('register');
 Route::post('register',[App\Http\Controllers\Auth\RegisterController::class,'register']);
-
+Route::post('verify',[App\Http\Controllers\Auth\RegisterController::class,'verify'])->name('verify');
+Route::post('send-phone',[App\Http\Controllers\Auth\LoginController::class,'send'])->name('send');
+Route::post('check',[App\Http\Controllers\Auth\LoginController::class,'check'])->name('check');
+Route::get('forget-password', function () {
+    return view('auth.sendPhone');
+})->name('forget-password');
 
 Route::middleware('auth')->group(function () {
 

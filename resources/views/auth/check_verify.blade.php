@@ -60,28 +60,22 @@
 
                                 <h4 class="card-title mb-1">Tizimga kirish</h4>
 
-                                <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
+                                <form class="auth-login-form mt-2" action="{{ route('check') }}" method="POST">
                                     @csrf
                                     <div class="mb-1">
-                                        <label for="login" class="form-label">Login</label>
-                                        <input type="email" class="form-control" id="login" name="email" placeholder="Email kiriting" aria-describedby="login" tabindex="1" autofocus />
+                                        <label for="login" class="form-label">tastiqlash kodini kiriting</label>
+                                        <input type="text" class="form-control" id="login" name="otp" placeholder="tasdiqlash kodini  kiriting" aria-describedby="login" tabindex="1" autofocus />
                                     </div>
-
                                     <div class="mb-1">
-                                        <div class="d-flex justify-content-between">
-                                            <label class="form-label" for="login-password">Parol</label>
-
-                                        </div>
-                                        <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" class="form-control form-control-merge" id="login-password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
-                                            <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                        </div>
-                                        <span class="mt-1"><a href="{{route('forget-password')}}">parolni unitdizmi?</a></span>
+                                        <label for="login" class="form-label">yangi parol kiritin</label>
+                                        <input type="text" class="form-control" id="login" name="password" placeholder="yangi parolni  kiriting" aria-describedby="login" tabindex="1" autofocus />
                                     </div>
+
+
 
                                     <button class="btn btn-primary w-100" tabindex="4">Kirish</button>
                                 </form>
-                                 <h5 class="mt-1">Ro'yxatdan otdizmi? <a href="{{route('register')}}">sign up</a></h5>
+
                             </div>
                         </div>
                         <!-- /Login basic -->
