@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\DTO\User\UserCreateDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\VerifyRequest;
-use App\Jobs\SendPhoneNomer;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Exception;
 use App\Http\Services\SendSms;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Twilio\Rest\Client;
 
 class RegisterController extends Controller
 {
@@ -19,24 +22,53 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function register(RegisterRequest  $request)
+    /**
+     * @param RegisterRequest $request
+     * @param UserCreateDTO $DTO
+     * @return Application|Factory|View
+     */
+    public function register(RegisterRequest $request, UserCreateDTO $DTO)
     {
-        $otp=rand(100000,999999);
-        $validate=$request->validated();
-        $validate['otp']=$otp;
-        $validate['password']=Hash::make($validate['password']);
-      $sms=  new SendSms($validate['phone'],$otp)->sendSms;
-        User::create($validate);
+        $otp = rand(100000, 999999);
+
+        $userData = [
+            'full_name' => $request->input('full_name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'phone' => $request->input('phone'),
+            'otp' => $otp
+        ];
+
+        //Bu klass hich nima qimiyapti oddiy Jobi dispatch qisezam bo'ladi
+        (new SendSms($request->input('phone'), $otp))->sendSmsPhone();
+
+        $dto = $DTO::fromArray($userData);
+
+        DB::transaction(function () use ($dto) {
+            User::query()->create($dto->jsonSerialize());
+        });
+
         return view('auth.verify');
     }
 
+    /**
+     * @throws Exception
+     */
     public function verify(VerifyRequest $request)
     {
+        $user = User::query()->where('phone', $request->input('phone'))->first();
 
-        $user=User::where('otp',$request->validated()['otp'])->first();
-        $user->otp='true';
-        auth()->login($user);
+        if ($user == null) {
+            throw new Exception('Phone is not have, pleece register in the first');
+        }
+
+        if ($user->otp != $request->input('otp')) {
+            throw new Exception('Otp is wrong');
+        }
+
+        $user->otp = 'true';
         $user->save();
+        auth()->login($user);
         return redirect('/');
 
     }

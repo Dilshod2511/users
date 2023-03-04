@@ -21,13 +21,13 @@ class RegisterRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'full_name'=>'required|max:255',
-            'email'=>'required|unique:users,email',
-             'password'=>'required',
-             'phone'=>'required|digits_between:9,9|unique:users,phone'
+            'full_name' => 'required|max:255',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+            'phone' => 'required|digits_between:9,9|unique:users,phone'
         ];
     }
 }
