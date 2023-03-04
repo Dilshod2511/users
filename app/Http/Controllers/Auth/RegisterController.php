@@ -15,6 +15,7 @@ use Twilio\Rest\Client;
 class RegisterController extends Controller
 {
     public function index()
+    
     {
         return view('auth.register');
     }
