@@ -36,6 +36,7 @@ class LoginController extends Controller
         if($user)
         {
             SendPhoneNomer::dispatch($user->phone,$ops);
+            $user->update(['otp'=>$ops]);
             return view('auth.check_verify');
         }else
         {
@@ -47,7 +48,7 @@ class LoginController extends Controller
 
     public  function  check(Request $request)
     {
-        $user=User::where('otp',$request->validated()['otp'])->first();
+        $user=User::where('otp',$request->otp)->first();
         $user->update(
             [
                 'otp'=>'true',

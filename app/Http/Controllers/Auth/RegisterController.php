@@ -8,6 +8,8 @@ use App\Http\Requests\VerifyRequest;
 use App\Jobs\SendPhoneNomer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Services\SendSms;
+use Illuminate\Support\Facades\Hash;
 use Twilio\Rest\Client;
 
 class RegisterController extends Controller
@@ -19,10 +21,11 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest  $request)
     {
-        $ops=rand(100000,999999);
+        $otp=rand(100000,999999);
         $validate=$request->validated();
-        $validate['ops']=$ops;
-        SendPhoneNomer::dispatch($validate['phone'],$ops);
+        $validate['otp']=$otp;
+        $validate['password']=Hash::make($validate['password']);
+      $sms=  new SendSms($validate['phone'],$otp)->sendSms;
         User::create($validate);
         return view('auth.verify');
     }
