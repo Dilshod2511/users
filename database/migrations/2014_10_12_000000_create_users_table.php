@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -32,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('awards')->nullable();
             $table->timestamps();
         });
-        \App\Models\User::create(
+        User::query()->create(
             [
                 'full_name'=>'Dilshod Hamrayev',
                 'area_code'=>554554,

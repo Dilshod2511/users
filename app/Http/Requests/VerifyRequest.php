@@ -21,10 +21,15 @@ class VerifyRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'otp'=>'digits_between:6,6'
+            'otp'=>'digits_between:6,6',
+            /**
+             * Telefon qani otp boshqa telefonga tegishli bo'sa chi
+             * 
+             */
+            "phone" => ['required', 'integer', 'phone']
         ];
     }
 }
