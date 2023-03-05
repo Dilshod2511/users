@@ -37,7 +37,7 @@ SendOtpSmsToPhoneJob implements ShouldQueue
     public function handle()
     {
         Http::baseUrl("provider_url")
-            ->withBasicAuth(env("TWILIO_SID"), env("TWILIO_TOKEN"))
+            ->withBasicAuth("USERNAME", "PASSWORD")
             ->post('send_sms_url', [
                 "phone" => $this->phone,
                 "test" => "Your activation code " . PHP_EOL . $this->otp
