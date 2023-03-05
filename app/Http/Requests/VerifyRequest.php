@@ -27,9 +27,9 @@ class VerifyRequest extends FormRequest
             'otp'=>'digits_between:6,6',
             /**
              * Telefon qani otp boshqa telefonga tegishli bo'sa chi
-             * 
+             *
              */
-            "phone" => ['required', 'integer', 'phone']
+//            "phone" => ['required', 'integer', 'phone']
         ];
     }
 }

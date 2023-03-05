@@ -14,43 +14,42 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class RegisterController extends Controller
 {
     public function index()
-
     {
         return view('auth.register');
     }
 
     /**
      * @param RegisterRequest $request
-     * @param UserCreateDTO $DTO
      * @return Application|Factory|View
      */
     public function register(RegisterRequest $request)
     {
-        $validate=$request->validated();
+        $validate = $request->validated();
         $otp = rand(100000, 999999);
-        $DTO=(new UserCreateDTO($validate['password'],$validate['email'],$otp,$validate['phone'],$validate['full_name']));
 
+        $DTO = new UserCreateDTO(
+            Hash::make($validate['password']),
+            $otp,
+            $validate['phone'],
+            $validate['email'],
+            $validate['full_name']
+        );
 
-        $userData = [
-            'full_name' => $request->input('full_name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'phone' => $request->input('phone'),
-            'otp' => $otp
-        ];
 
         //Bu klass hich nima qimiyapti oddiy Jobi dispatch qisezam bo'ladi
         (new SendSms($request->input('phone'), $otp))->sendSmsPhone();
 
-        $dto = $DTO::fromArray($userData);
 
-        DB::transaction(function () use ($dto) {
-            User::query()->create($dto->jsonSerialize());
+        DB::transaction(function () use ($DTO) {
+            User::query()->create($DTO->jsonSerialize());
         });
+
+        $request->session()->push('user.phone', $DTO->getPhone());
 
         return view('auth.verify');
     }
@@ -60,7 +59,11 @@ class RegisterController extends Controller
      */
     public function verify(VerifyRequest $request)
     {
-        $user = User::query()->where('phone', $request->input('phone'))->first();
+        $data = $request->session()->get('user.phone');
+
+        $phone = array_shift($data);
+
+        $user = User::query()->where('phone', $phone)->first();
 
         if ($user == null) {
             throw new Exception('Phone is not have, pleece register in the first');
@@ -70,8 +73,12 @@ class RegisterController extends Controller
             throw new Exception('Otp is wrong');
         }
 
-        $user->otp = 'true';
-        $user->save();
+        $user->is_verified = true;
+
+        DB::transaction(function () use ($user) {
+            $user->save();
+        });
+
         auth()->login($user);
         return redirect('/');
 

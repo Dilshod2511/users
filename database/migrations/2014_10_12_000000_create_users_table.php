@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->integer('area_code')->unique()->nullable();
             $table->string('otp')->nullable();
+            $table->boolean('is_verified')->default(false);
             $table->string('full_name');
             $table->string('email')->unique();
             $table->string('password');

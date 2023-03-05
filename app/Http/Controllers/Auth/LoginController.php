@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Jobs\SendOtpSmsToPhoneJob;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,12 +24,9 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-         $DTO=(new LoginDTO($request->validated()['password'],$request->validated()['password']));
-        $dto = $DTO::fromArray($request->validated());
+        $DTO = new LoginDTO($request->input('password'), $request->input('email'));
 
-
-
-        if (!Auth::attempt($dto->jsonSerialize())) {
+        if (!Auth::attempt($DTO->jsonSerialize())) {
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ])->onlyInput('email');
@@ -41,10 +39,11 @@ class LoginController extends Controller
 
     public function send(Request $request)
     {
+        $phone = $request->input('phone');
         $otp = rand(100000, 999999);
-        $user = User::query()->where('phone', $request->input('phone'))->first();
+        $user = User::query()->where('phone', $phone)->first();
 
-        if (!$user) {
+        if ($user == null) {
             return "bunaqa nomer mavjud emas";
         }
 
@@ -59,6 +58,8 @@ class LoginController extends Controller
 
         SendOtpSmsToPhoneJob::dispatch($user->phone, $otp);
 
+        $request->session()->push('user.phone', $phone);
+
         return view('auth.check_verify');
     }
 
@@ -67,15 +68,25 @@ class LoginController extends Controller
      * @param Request $request
      * @return RedirectResponse
      * Bu keremas nma qilas quru otp ni tekshirib tell nomer siz
+     * @throws Exception
      */
     public function check(Request $request): RedirectResponse
     {
-        $user = User::query()->where('otp', $request->input('otp'))->first();
+        $data = $request->session()->get('user.phone');
+        $phone = array_shift($data);
+        $user = User::query()
+            ->where('phone', $phone)
+            ->where('otp', $request->input('otp'))
+            ->first();
+
+        if ($user == null){
+            throw new Exception('Wrong data');
+        }
 
 
         $user->update(
             [
-                'otp' => 'true',
+                'is_verified' => true,
                 'password' => Hash::make($request->password),
             ]
         );
