@@ -21,9 +21,11 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(LoginRequest $request, LoginDTO $DTO): RedirectResponse
+    public function login(LoginRequest $request)
     {
+         $DTO=(new LoginDTO($request->validated()['password'],$request->validated()['password']));
         $dto = $DTO::fromArray($request->validated());
+
 
 
         if (!Auth::attempt($dto->jsonSerialize())) {

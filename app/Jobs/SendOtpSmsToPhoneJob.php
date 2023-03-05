@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Twilio\Rest\Client;
 
-class SendOtpSmsToPhoneJob implements ShouldQueue
+class
+SendOtpSmsToPhoneJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

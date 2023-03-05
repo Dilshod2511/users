@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     public function index()
-    
+
     {
         return view('auth.register');
     }
@@ -28,9 +28,12 @@ class RegisterController extends Controller
      * @param UserCreateDTO $DTO
      * @return Application|Factory|View
      */
-    public function register(RegisterRequest $request, UserCreateDTO $DTO)
+    public function register(RegisterRequest $request)
     {
+        $validate=$request->validated();
         $otp = rand(100000, 999999);
+        $DTO=(new UserCreateDTO($validate['password'],$validate['email'],$otp,$validate['phone'],$validate['full_name']));
+
 
         $userData = [
             'full_name' => $request->input('full_name'),

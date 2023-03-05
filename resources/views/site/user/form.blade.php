@@ -28,7 +28,7 @@
                     <div class="card card-primary">
 
                         <!-- form start -->
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('users.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <h3 class="">O'zingiz haqizda malumotni toldiring</h3>
                             <div class="card-body  p d-flex justify-content-around ">
@@ -121,6 +121,7 @@
                                 </div>
 
                             </div>
+                            <h4>Avtotransportiz haqida malumot kiriting</h4>
                             <div class="card-body  p d-flex justify-content-around ">
 
                                 <div class="form-group  " style="width: 33%">
@@ -172,9 +173,25 @@
                                     </div>
                                     @enderror
                                 </div>
+{{--                                <div class="form-group  " style="width: 33%">--}}
+{{--                                    <label for="exampleInputEmail1">Avtotransport holati</label>--}}
+{{--                                    <input type="text" name="condition	"  value="{{old('condition	')}}" class="form-control" id="exampleInputEmail1"  placeholder="Avtotransport holatini kiriting">--}}
+{{--                                    @error('condition')--}}
+{{--                                    <div class="text-danger p-1">--}}
+{{--                                        {{$message}}--}}
+{{--                                    </div>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
                                 <div class="form-group  " style="width: 33%">
-                                    <label for="exampleInputEmail1">Avtotransport holati</label>
-                                    <input type="text" name="condition	"  value="{{old('condition	')}}" class="form-control" id="exampleInputEmail1"  placeholder="Avtotransport holatini kiriting">
+                                    <label>Autotransport holatini  tanlang</label>
+                                    <select class="form-select select_year" id="viloyat " name="condition">
+                                        <option   value="" >Autotransport holatini  tanlang</option>
+                                        <option  value="Yaxshi">Yaxshi</option>
+                                        <option  value="Qoniqarsiz">Qoniqarsiz</option>
+                                        <option  value="Qoniqarli">Qoniqarli</option>
+                                        <option  value="Juda yaxshi">Juda yaxshi</option>
+                                    </select>
+
                                     @error('condition')
                                     <div class="text-danger p-1">
                                         {{$message}}
@@ -186,15 +203,32 @@
                             </div>
                             <div class="card-body  p d-flex justify-content-around ">
 
+
                                 <div class="form-group  " style="width: 33%">
-                                    <label for="exampleInputEmail1">Yoqilg'i</label>
-                                    <input type="text" name="fuel"  value="{{old('fuel')}}" class="form-control" id="exampleInputEmail1"  placeholder="Yoqilg'ini kiriting">
+                                    <label>Haydovchilik toifasini tanlang</label>
+                                    <select class="form-select select_year" id="viloyat " name="fuel">
+                                        <option   value="" >Yoqilg'ini  tanlang</option>
+                                        <option  value="Metan">Metan</option>
+                                        <option  value="Dizel">Dizel</option>
+                                        <option  value="Elekt yoqilg'i">Elekt yoqilg'i</option>
+                                    </select>
+
                                     @error('fuel')
                                     <div class="text-danger p-1">
                                         {{$message}}
                                     </div>
                                     @enderror
                                 </div>
+
+                                <div class="form-group  " style="width: 33%">
+
+                                </div>
+                                <div class="form-group  " style="width: 33%">
+
+                                </div>
+                            </div>
+                            <h4>Haydovchidan olinadigan malumot kiriting</h4>
+                            <div class="card-body  p d-flex justify-content-around ">
 
                                 <div class="form-group  " style="width: 33%">
                                     <label for="formFile" class="form-label">Pasport</label>
@@ -205,13 +239,6 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="form-group  " style="width: 33%">
-
-                                </div>
-                            </div>
-                            <div class="card-body  p d-flex justify-content-around ">
-
-
                                 <div class="form-group  " style="width: 33%">
                                     <label for="formFile" class="form-label">Haydovchilik guvohnomasi</label>
                                     <input class="form-control" type="file" name="certificate" id="formFile">
@@ -230,6 +257,11 @@
                                     </div>
                                     @enderror
                                 </div>
+
+
+                            </div>
+                            <div class="card-body  p d-flex justify-content-around ">
+
                                 <div class="form-group  " style="width: 33%">
                                     <label for="formFile" class="form-label">Avtotrasport texposporti</label>
                                     <input class="form-control" type="file" name="tex_passport" id="formFile">
@@ -239,6 +271,13 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div class="form-group  " style="width: 33%">
+
+                                </div>
+                                <div class="form-group  " style="width: 33%">
+
+                                </div>
+
 
                             </div>
 

@@ -1,83 +1,146 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+    <meta name="description"
+          content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <title>Ma'rifat Monitoring tizimi</title>
+    <link rel="apple-touch-icon" href="{{asset('app-assets/images/ico/apple-icon-120.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('app-assets/images/ico/favicon.ico')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+          rel="stylesheet">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/vendors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/flatpickr.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/quill.snow.css')}}">
+    <!-- END: Vendor CSS-->
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/bootstrap-extended.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/colors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/components.min.css')}}">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- BEGIN: Page CSS-->
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/app-invoice.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/form-quill-editor.min.css')}}">
+    <!-- END: Page CSS-->
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/vertical-menu.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/form-flat-pickr.min.css')}}">
+    <!-- END: Page CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+    <script language="JavaScript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
+    <!-- END: Custom CSS-->
+
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<style>
+    .ck-editor__editable[role="textbox"] {
+        /* editing area */
+        min-height: 200px;
+    }
+    .butt{
+        padding: 13px 30px;
+        margin: 0;
+    }
+    .name,.surname{
+        padding: 13px;
+        width: 110%;
+        margin-right: 20px;
+    }
+    .select{
+        padding: 11px 84px 11px 15px;
+        width: 100%;
+    }
+    .p{
+        padding: 20px 20px 10px 10px;
+    }
+    .margin{
+        margin-right: 50px;
+    }
+</style>
+<!-- END: Head-->
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+<!-- BEGIN: Body-->
 
-                    </ul>
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
+      data-menu="vertical-menu-modern" data-col="">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+<!-- END: Header-->
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+<!-- BEGIN: Main Menu-->
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<!-- END: Main Menu-->
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+<!-- BEGIN: Content-->
+@yield('content')
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+<!-- END: Footer-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- BEGIN: Vendor JS-->
+<script src="{{asset('assets/js/core/vendors.min.js')}}"></script>
+<!-- BEGIN Vendor JS-->
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{{asset('assets/js/plugins/flatpickr.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/quill.min.js')}}"></script>
+<!-- END: Page Vendor JS-->
+
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{{asset('assets/js/plugins/apexcharts.min.js')}}"></script>
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="{{asset('assets/js/plugins/form-pickers.min.js')}}"></script>
+<script src="{{asset('assets/js/core/app-invoice.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/form-quill-editor.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/form-number-input.min.js')}}"></script>
+<!-- END: Page JS-->
+
+<!-- BEGIN: Theme JS-->
+<script src="{{asset('assets/js/core/app-menu.min.js')}}"></script>
+<script src="{{asset('assets/js/core/app.min.js')}}"></script>
+<!-- END: Theme JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="{{asset('assets/js/core/card-analytics.min.js')}}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
+<script src="{{asset('assets/js/plugins/components-popovers.js')}}"></script>
+
+<!-- END: Page JS-->
+
+
+<script>
+
+
+
+
+
+
+</script>
+
 </body>
+<!-- END: Body-->
+@yield('script')
 </html>

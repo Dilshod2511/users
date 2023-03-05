@@ -9,8 +9,9 @@ class LoginDTO implements JsonSerializable
     public string $password;
     public string $email;
 
-    public function __construct(string $password, int $email)
+    public function __construct(string $password, string $email)
     {
+
         $this->password = $password;
         $this->email = $email;
     }
@@ -19,7 +20,7 @@ class LoginDTO implements JsonSerializable
     {
         return new static(
             $data['password'],
-            $data['email']
+            $data['email'],
         );
     }
 

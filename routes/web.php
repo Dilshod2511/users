@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Site;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +29,12 @@ Route::get('forget-password', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/', function () {
-        return view('welcome');
+        return view('site.user.form');
     });
+    Route::resources([
+        'users'=>Site\UserController::class,
+    ]);
 
 
-    });
+});
 
