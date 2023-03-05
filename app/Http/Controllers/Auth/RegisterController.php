@@ -14,7 +14,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Testing\Fluent\Concerns\Has;
 
 class RegisterController extends Controller
 {
@@ -81,6 +80,5 @@ class RegisterController extends Controller
 
         auth()->login($user);
         return redirect('/');
-
     }
 }

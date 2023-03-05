@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-
     public function index()
     {
         return view('auth.login');
@@ -79,7 +78,7 @@ class LoginController extends Controller
             ->where('otp', $request->input('otp'))
             ->first();
 
-        if ($user == null){
+        if ($user == null) {
             throw new Exception('Wrong data');
         }
 

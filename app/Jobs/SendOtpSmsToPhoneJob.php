@@ -10,10 +10,12 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Twilio\Rest\Client;
 
-class
-SendOtpSmsToPhoneJob implements ShouldQueue
+class SendOtpSmsToPhoneJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public $phone;
     public $otp;
@@ -55,7 +57,5 @@ SendOtpSmsToPhoneJob implements ShouldQueue
 //                'body' => 'Kodni kiriting! ' . $this->ops,
 //            )
 //        );
-
-
     }
 }

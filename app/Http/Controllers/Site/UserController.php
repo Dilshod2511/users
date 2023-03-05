@@ -15,7 +15,6 @@ class UserController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -68,7 +67,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request,int $id)
+    public function update(Request $request, int $id)
     {
         //
     }
