@@ -29,9 +29,9 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $validate = $request->validated();
-        $otp = rand(100000, 999999);
 
+        $otp = rand(100000, 999999);
+        $validate = $request->validated();
         $DTO = new UserCreateDTO(
             Hash::make($validate['password']),
             $otp,
@@ -49,7 +49,7 @@ class RegisterController extends Controller
             User::query()->create($DTO->jsonSerialize());
         });
 
-        $request->session()->push('user.phone', $DTO->getPhone());
+        $request->session()->put('user.phone', $DTO->getPhone());
 
         return view('auth.verify');
     }
@@ -59,11 +59,13 @@ class RegisterController extends Controller
      */
     public function verify(VerifyRequest $request)
     {
+
         $data = $request->session()->get('user.phone');
 
-        $phone = array_shift($data);
 
-        $user = User::query()->where('phone', $phone)->first();
+//        $phone = array_shift($data);
+
+       $user = User::query()->where('phone', $data)->first();
 
         if ($user == null) {
             throw new Exception('Phone is not have, pleece register in the first');

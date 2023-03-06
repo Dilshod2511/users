@@ -27,9 +27,9 @@ class LoginController extends Controller
         $DTO = new LoginDTO($request->input('password'), $request->input('email'));
 
         if (!Auth::attempt($DTO->jsonSerialize())) {
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
+
+            return 'The provided credentials do not match our records.';
+
         }
 
 
@@ -73,9 +73,9 @@ class LoginController extends Controller
     public function check(Request $request): RedirectResponse
     {
         $data = $request->session()->get('user.phone');
-        $phone = array_shift($data);
+//        $phone = array_shift($data);
         $user = User::query()
-            ->where('phone', $phone)
+            ->where('phone', $data)
             ->where('otp', $request->input('otp'))
             ->first();
 

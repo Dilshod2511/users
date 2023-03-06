@@ -79,8 +79,8 @@
                                 </div>
                                 <div class="form-group  " style="width: 33%">
                                     <label for="formFile" class="form-label">Upload image</label>
-                                    <input class="form-control" type="file" name="file" id="formFile">
-                                    @error('file')
+                                    <input class="form-control" type="file" name="photo" id="formFile">
+                                    @error('photo')
                                     <div class="text-danger p-1">
                                         {{$message}}
                                     </div>
@@ -88,8 +88,8 @@
                                 </div>
                                 <div class="form-group  " style="width: 33%">
                                     <label for="exampleInputEmail1">Uztrucking ga azo bolgan sana</label>
-                                    <input type="date" name="	date_of_membership" class="form-control"  value="{{old('date_of_membership')}}" id="exampleInputEmail1"  placeholder="Sanani kiriting">
-                                    @error('	date_of_membership')
+                                    <input type="date" name="date_of_membership" class="form-control"  value="{{old('date_of_membership')}}" id="exampleInputEmail1"  placeholder="Sanani kiriting">
+                                    @error('date_of_membership')
                                     <div class="text-danger p-1">
                                         {{$message}}
                                     </div>
@@ -126,7 +126,7 @@
 
                                 <div class="form-group  " style="width: 33%">
                                     <label for="exampleInputEmail1">Yuk moshinasi markasi</label>
-                                    <input type="text" name="truck_brand	"  value="{{old('truck_brand')}}" class="form-control" id="exampleInputEmail1"  placeholder="Yuk moshinasi markasini kiriting">
+                                    <input type="text" name="truck_brand"  value="{{old('truck_brand')}}" class="form-control" id="exampleInputEmail1"  placeholder="Yuk moshinasi markasini kiriting">
                                     @error('truck_brand	')
                                     <div class="text-danger p-1">
                                         {{$message}}
@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="form-group  " style="width: 33%">
                                     <label for="exampleInputEmail1"> Ishlab chiqarilgan yili </label>
-                                    <input type="text" name="year"  value="{{old('year')}}" class="form-control" id="exampleInputEmail1"  placeholder="Ishlab chiqarilgan yilini kiriting">
+                                    <input type="date" name="year"  value="{{old('year')}}" class="form-control" id="exampleInputEmail1"  placeholder="Ishlab chiqarilgan yilini kiriting">
                                     @error('year')
                                     <div class="text-danger p-1">
                                         {{$message}}
