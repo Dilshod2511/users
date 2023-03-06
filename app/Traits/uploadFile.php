@@ -12,9 +12,10 @@ trait UploadFile
 
     public function uploadImage($data)
     {
+
         $destinationPath = public_path('upload/images');
-        $imagename = time() . '-' . $data->file('file')->getClientOriginalName();
-        $img = Image::make($data->file('file')->getRealPath());
+        $imagename = time() . '-' . $data->file('photo')->getClientOriginalName();
+        $img = Image::make($data->file('photo')->getRealPath());
         $img->save($destinationPath . '/' . $imagename,70);
         return $imagename;
 
@@ -22,9 +23,11 @@ trait UploadFile
 
     public  function uploadPdf($data)
     {
-        $file_name=time() . '-' . $data->file('files')->getClientOriginalName();
-        $data->file('files')->storeAs('files',$file_name,'images');
-        $data['file']=$file_name;
+
+            $file_name=time() . '-' . $data->getClientOriginalName();
+            $data->storeAs('files',$file_name,'images');
+            return $file_name;
+
 
     }
 

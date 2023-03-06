@@ -25,11 +25,11 @@ class UserCreateRequest extends FormRequest
     {
         return [
             'workplace' => 'required',
-            'area_code' =>'required',
+            'area_code' =>'required|numeric',
             'date_of_membership' => 'required',
-            'photo' => 'required',
-            'distance' =>'required',
-            'work_seniority' => 'required',
+            'photo' => 'required|mimes:jpg|max:5000',
+            'distance' =>'required|numeric',
+            'work_seniority' => 'required|numeric',
             'awards' => 'required',
             'driver_category' => 'required',
             'truck_number' =>'required',
@@ -39,10 +39,10 @@ class UserCreateRequest extends FormRequest
             'fuel' => 'required',
             'number' => 'required',
             'capacity' => 'required',
-            "passport" => 'required',
-            "certificate" => 'required',
-            "employment_book" => 'required',
-            "tex_passport" => 'required',
+            "passport" => 'required|mimes:pdf|max:5000',
+            "certificate" => 'required|mimes:pdf|max:5000',
+            "employment_book" => 'required|mimes:pdf|max:5000',
+            "tex_passport" => 'required|mimes:pdf|max:5000',
         ];
     }
 }

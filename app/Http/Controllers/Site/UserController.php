@@ -56,7 +56,7 @@ class UserController extends Controller
             $validate['workplace'],
             $validate['area_code'],
             $validate['date_of_membership'],
-            $validate['photo'],
+            $validate['photo']=$this->uploadImage($request),
             $validate['distance'],
             $validate['work_seniority'],
             $validate['awards'],
@@ -83,16 +83,16 @@ class UserController extends Controller
         $DTO = new DrivingCreateDTO(
 
             $validate['user_id']=auth()->user()->id,
-            $validate['passport'],
-            $validate['certificate'],
-            $validate['employment_book'],
-            $validate['tex_passport'],);
+            $validate['passport']=$this->uploadPdf($request->file('passport')),
+            $validate['certificate']=$this->uploadPdf($request->file('certificate')),
+            $validate['employment_book']=$this->uploadPdf($request->file('employment_book')),
+            $validate['tex_passport']=$this->uploadPdf($request->file('tex_passport')),);
 
         DB::transaction(function () use ($DTO) {
             DriverInformation::query()->create($DTO->jsonSerialize());
         });
 
-        return redirect('/');
+       dd(55);
 
     }
 
