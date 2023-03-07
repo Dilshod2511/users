@@ -13,11 +13,9 @@ class UserCreateDTO implements JsonSerializable
     public string $name;
 
 
-
-
-
-    public function __construct(string $password, string $otp, string $phone, string $email, string $name)
+    public function __construct(string $password, string $otp, string $phone,string $email,string $name)
     {
+
         $this->password = $password;
         $this->otp = $otp;
         $this->phone = $phone;
@@ -25,17 +23,7 @@ class UserCreateDTO implements JsonSerializable
         $this->name = $name;
     }
 
-    public static function fromArray(array $data): self
-    {
-        return new static(
-            $data['password'],
-            $data['otp'],
-            $data['phone'],
-            $data['email'],
-            $data['full_name']
 
-        );
-    }
 
     /**
      * @return string

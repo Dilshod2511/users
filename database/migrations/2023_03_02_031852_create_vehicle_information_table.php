@@ -20,11 +20,12 @@ class CreateVehicleInformationTable extends Migration
                 ->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->string('year')->nullable();
-            $table->date('condition')->nullable();
+            $table->date('year')->nullable();
+            $table->string('condition')->nullable();
             $table->string('fuel')->nullable();
             $table->string('number')->nullable();
             $table->string('capacity')->nullable();
+            $table->timestamps();
         });
     }
 
