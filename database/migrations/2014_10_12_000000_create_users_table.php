@@ -38,9 +38,10 @@ class CreateUsersTable extends Migration
             [
                 'full_name'=>'Dilshod Hamrayev',
                 'area_code'=>554554,
-                'email'=>'bekbek2269',
+                'email'=>'bekbek2269@gmail.com',
                 'password'=>\Illuminate\Support\Facades\Hash::make(123456),
                 'phone'=>'998998152511',
+                'role'=>'1',
             ]
         );
     }

@@ -36,18 +36,12 @@ class UserCreateDTO implements JsonSerializable
     {
         return $this->email;
     }
-    public function setEmail(): string
-    {
-        return $this->email;
-    }
+  
     public function getName(): string
     {
         return $this->email;
     }
-    public function setName(): string
-    {
-        return $this->email;
-    }
+  
 
     /**
      * @return string
@@ -65,29 +59,11 @@ class UserCreateDTO implements JsonSerializable
         return $this->phone;
     }
 
-    /**
-     * @param string $otp
-     */
-    public function setOtp(string $otp): void
-    {
-        $this->otp = $otp;
-    }
+ 
 
-    /**
-     * @param string $password
-     */
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
-    }
 
-    /**
-     * @param string $phone
-     */
-    public function setPhone(string $phone): void
-    {
-        $this->phone = $phone;
-    }
+
+    
 
     /**
      * Specify data which should be serialized to JSON

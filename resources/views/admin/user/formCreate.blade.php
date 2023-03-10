@@ -1,34 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
 @section('content')
 
-
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0"></h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-            @if(session('success'))
-                <div class="alert alert-success" role="alert">
-                    <button class="close" type="button" data-dismiss="alert" aria-hidden="true">x</button>
-                    <h4><i class="icon fa fa-check"></i>{{session('success')}} </h4>
-                </div>
-            @endif
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="container">
-        <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card card-primary">
-
-                        <!-- form start -->
-                        <form action="{{route('users.store')}}" method="POST" enctype="multipart/form-data">
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper container-xxl p-0">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- Basic multiple Column Form section start -->
+                <section id="multiple-column-form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">yangi foydalanuvchi  yaratish</h4>
+                                </div>
+                                <div class="card-body">
+                                <form action="{{route('users.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <h3 class="">O'zingiz haqizda malumotni toldiring</h3>
                             <div class="card-body  p d-flex justify-content-around ">
@@ -278,12 +269,25 @@
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </div>
                         </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </section>
+                <!-- Basic Floating Label Form section end -->
 
-            <!-- /.row -->
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
-    </section>
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+    <script>
+      $(document).on('input','.telefon',function(e){
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
+                    e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '-') + (x[4] ? '-' + x[4] : '');
+     })
+
+
+ </script>
+
+
 @endsection

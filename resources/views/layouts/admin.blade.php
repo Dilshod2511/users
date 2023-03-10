@@ -79,7 +79,7 @@
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
     data-menu="vertical-menu-modern" data-col="">
-    @include('sweetalert::alert')
+  
     <!-- BEGIN: Header-->
     <nav
         class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
@@ -229,7 +229,7 @@
         <div class="navbar-header mb-3">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item me-auto"><a class="navbar-brand"
-                        href="/"><img src="{{asset('app-assets/images/ico/marifat.png')}}" width="200" alt="">
+                        href="/">Users
 
                     </a>
                 </li>
@@ -239,39 +239,20 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="li1 {{request()->segment(1)==''?'active':''}} nav-item"><a class="d-flex align-items-center" href="/"><i
+                <li class="li1 nav-item"><a class="d-flex align-items-center" href="/"><i
                             data-feather="home"></i><span class="menu-title text-truncate">Bosh sahifa</span></a>
                 </li>
-{{--                <li class=" li2 nav-item {{request()->segment(1)=='users'||request()->segment(1)=='reports'?'active':''}} "><a class="d-flex align-items-center" href="{{route('users.index')}}"><i--}}
-{{--                            data-feather="user"></i><span class="menu-title text-truncate">Jamiyat a'zolari</span></a>--}}
-{{--                </li>--}}
+                <li class=" li2 nav-item  "><a class="d-flex align-items-center" href="{{route('dashboard.users')}}"><i
+                            data-feather="user"></i><span class="menu-title text-truncate">Users</span></a>
+               </li>
 
-{{--                @if(auth()->user()->role==1)--}}
-{{--                <li class="li nav-item {{request()->segment(1)=='regions'||request()->segment(1)=='show-region-users'?'active':''}}"><a class="d-flex align-items-center" href="{{route('regions.index')}}"><i--}}
-{{--                            data-feather="map-pin"></i><span class="menu-title text-truncate">Viloyatlar</span></a>--}}
-{{--                </li>--}}
-{{--                @endif--}}
 
-{{--                <li class="li nav-item {{request()->segment(1)=='rate'?'active':''}}"><a class="d-flex align-items-center" href="{{route('rate')}}"><i--}}
-{{--                            data-feather="award"></i><span class="menu-title text-truncate">Reyting</span></a>--}}
-{{--                </li>--}}
-{{--                @if(auth()->user()->role==1)--}}
-{{--                <li class="li nav-item {{request()->segment(1)=='categories'?'active':''}}"><a class="d-flex align-items-center" href="{{route('categories.index')}}"><i--}}
-{{--                            data-feather="grid"></i><span class="menu-title text-truncate">Kategoriyalar</span></a>--}}
-{{--                </li>--}}
-{{--                <li class="li nav-item {{request()->segment(1)=='admins'?'active':''}}"><a class="d-flex align-items-center" href="{{route('admins.index')}}"><i--}}
-{{--                            data-feather="users"></i><span class="menu-title text-truncate"> Hudud yetakchilari</span></a>--}}
-{{--                </li>--}}
-{{--                @endif--}}
-{{--                <li class="li nav-item {{request()->segment(1)=='logout'?'active':''}}"><a class="d-flex align-items-center" onclick="if (!confirm('tizimdan chiqmoqchimisiz?')) { return false }" href="{{route('logout')}}"><i--}}
-{{--                            data-feather="award"></i><span class="menu-title text-truncate">Tizimdan chiqish</span></a>--}}
-{{--                </li>--}}
-            </ul>
         </div>
     </div>
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->
+
      @yield('content')
     <!-- END: Content-->
 
@@ -336,17 +317,7 @@
 
 
 
-        ClassicEditor
-            .create( document.querySelector( '.editor' ),{
-                ckfinder:{
-                    uploadUrl: "{{route('ckeditor.upload').'?_token='.csrf_token()}}"
-                }
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
-
-
+      
 
 
         $(document).ready(function () {
@@ -355,58 +326,6 @@
 
 
 
-// $(document).on('click','#user',function(){
-//  let id =$(this).data('id');
-//  let deletes=$(this).data('delete');
-
-//   delete_user(id,deletes)
-
-
-
-// })
-
-// function delete_user(id,deletes)
-// {
-
-//     var url = '{{ route("show-delete-user",":id") }}';
-//      url = url.replace(':id', id);
-
-
-//  $.ajax({
-//    type:"GET",
-//    url:url,
-//    success : function(response){
-//       console.log(response)
-//       var urll = '{{ route("users.destroy", ":id") }}';
-//      urll = urll.replace(':id',response['user'].id);
-//      $(deletes).html('')
-//       $(deletes).append(`
-
-//       <form action=${urll} method="POST">
-//         @csrf
-//            @method('DELETE')
-//                          <div class="col-12 text-center">
-//                           <button type="submit" class="btn btn-danger me-1 mt-1 waves-effect waves-float waves-light">Xa, ochirish</button>
-//                           <button type="reset" class="btn btn-outline-secondary mt-1 waves-effect" data-bs-dismiss="modal"
-//                           aria-label="Close">
-//                               Bekor qilish
-//                           </button>
-//                       </div>
-//                         </form>
-
-//       `)
-
-//   }
-
-
-//  })
-
-
-
-
-
-
-// }
 
 
 
