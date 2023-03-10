@@ -9,8 +9,7 @@ class DriverInformation extends Model
 {
     use HasFactory;
 
-    protected  $table='driver_information';
+    protected $table='driver_information';
 
     protected $fillable=['passport','certificate','employment_book','tex_passport','user_id'];
-
 }

@@ -13,6 +13,3 @@ class WihecleInformation extends Model
 
     protected $fillable=['truck_number','truck_brand','user_id','year','condition','fuel','number','capacity'];
 }
-
-
-

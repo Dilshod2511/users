@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\WihecleInformation;
 use app\Traits\CreateUser;
 use App\Traits\UploadFile;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     use CreateUser;
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      
+
     }
 
     /**
@@ -47,10 +48,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param UserCreateRequest $request
+     * @return RedirectResponse
      */
-    public function store(UserCreateRequest $request)
+    public function store(UserCreateRequest $request): RedirectResponse
     {
 
         $this->CreateUserForm($request);
@@ -106,6 +107,6 @@ class UserController extends Controller
         //
     }
 
- 
+
 }
 ?>

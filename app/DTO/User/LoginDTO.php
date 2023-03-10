@@ -11,7 +11,6 @@ class LoginDTO implements JsonSerializable
 
     public function __construct(string $password, string $email)
     {
-
         $this->password = $password;
         $this->email = $email;
     }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Services;
 
 use App\Jobs\SendOtpSmsToPhoneJob;
@@ -20,6 +19,4 @@ class SendSms
     {
         SendOtpSmsToPhoneJob::dispatch($this->phone, $this->otp);
     }
-
-
 }
