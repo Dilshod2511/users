@@ -17,6 +17,7 @@
         "laravel/framework": "^v8.75.0",
         "laravel/tinker": "^2.0",
         "twilio/sdk": "^6.44"
+       
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

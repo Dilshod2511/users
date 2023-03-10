@@ -1,73 +1,55 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Dashboard;
 
-use App\DTO\User\DrivingCreateDTO;
-use App\DTO\User\UserCreateDTO;
-use App\DTO\User\UserCreateFormDTO;
-use App\DTO\User\VehicleCreateDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserCreateRequest;
-use App\Models\DriverInformation;
-use App\Models\User;
-use App\Models\WihecleInformation;
 use app\Traits\CreateUser;
-use App\Traits\UploadFile;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     use CreateUser;
-    
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-      
+        return view('admin.user.index');
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(UserCreateRequest $request)
     {
-
         $this->CreateUserForm($request);
         return redirect()->back();
-
     }
-
-
-
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show($id)
     {
         //
     }
@@ -76,9 +58,9 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function edit(int $id)
+    public function edit($id)
     {
         //
     }
@@ -86,11 +68,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,int $id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -99,13 +81,15 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
         //
     }
-
- 
+    public function saveRegister(RegisterRequest $request)
+    {
+        $this->createUserRegister($request);
+        return view('admin.user.formCreate');
+    }
 }
-?>

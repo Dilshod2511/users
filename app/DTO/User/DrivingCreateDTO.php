@@ -44,14 +44,7 @@ class DrivingCreateDTO implements JsonSerializable
         return $this->user_id;
     }
 
-    /**
-     * @param int $user_id
-     */
-    public function setUserId(int $user_id): void
-    {
-        $this->user_id = $user_id;
-    }
-
+ 
     /**
      * @return string
      */
@@ -60,13 +53,7 @@ class DrivingCreateDTO implements JsonSerializable
         return $this->passport;
     }
 
-    /**
-     * @param string $passport
-     */
-    public function setPassport(string $passport): void
-    {
-        $this->passport = $passport;
-    }
+ 
 
     /**
      * @return string
@@ -76,13 +63,7 @@ class DrivingCreateDTO implements JsonSerializable
         return $this->certificate;
     }
 
-    /**
-     * @param string $certificate
-     */
-    public function setCertificate(string $certificate): void
-    {
-        $this->certificate = $certificate;
-    }
+
 
     /**
      * @return string
@@ -92,13 +73,7 @@ class DrivingCreateDTO implements JsonSerializable
         return $this->employment_book;
     }
 
-    /**
-     * @param string $employment_book
-     */
-    public function setEmploymentBook(string $employment_book): void
-    {
-        $this->employment_book = $employment_book;
-    }
+  
 
     /**
      * @return string
@@ -108,13 +83,7 @@ class DrivingCreateDTO implements JsonSerializable
         return $this->tex_passport;
     }
 
-    /**
-     * @param string $tex_passport
-     */
-    public function setTexPassport(string $tex_passport): void
-    {
-        $this->tex_passport = $tex_passport;
-    }
+  
 
     public function jsonSerialize(): array
     {

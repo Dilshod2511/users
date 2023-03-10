@@ -53,13 +53,7 @@ class VehicleCreateDTO implements JsonSerializable
         return $this->truck_number;
     }
 
-    /**
-     * @param int $truck_number
-     */
-    public function setTruckNumber(string $truck_number): void
-    {
-        $this->truck_number = $truck_number;
-    }
+   
 
     /**
      * @return mixed
@@ -69,13 +63,6 @@ class VehicleCreateDTO implements JsonSerializable
         return $this->truck_brand;
     }
 
-    /**
-     * @param mixed $truck_brand
-     */
-    public function setTruckBrand($truck_brand): void
-    {
-        $this->truck_brand = $truck_brand;
-    }
 
     /**
      * @return string
@@ -85,13 +72,7 @@ class VehicleCreateDTO implements JsonSerializable
         return $this->user_id;
     }
 
-    /**
-     * @param string $user_id
-     */
-    public function setUserId(string $user_id): void
-    {
-        $this->user_id = $user_id;
-    }
+   
 
     /**
      * @return string
@@ -101,13 +82,7 @@ class VehicleCreateDTO implements JsonSerializable
         return $this->year;
     }
 
-    /**
-     * @param string $year
-     */
-    public function setYear(string $year): void
-    {
-        $this->year = $year;
-    }
+  
 
     /**
      * @return string
@@ -117,14 +92,7 @@ class VehicleCreateDTO implements JsonSerializable
         return $this->condition;
     }
 
-    /**
-     * @param string $condition
-     */
-    public function setCondition(string $condition): void
-    {
-        $this->condition = $condition;
-    }
-
+ 
     /**
      * @return string
      */
@@ -133,13 +101,7 @@ class VehicleCreateDTO implements JsonSerializable
         return $this->fuel;
     }
 
-    /**
-     * @param string $fuel
-     */
-    public function setFuel(string $fuel): void
-    {
-        $this->fuel = $fuel;
-    }
+ 
 
     /**
      * @return string
@@ -149,13 +111,7 @@ class VehicleCreateDTO implements JsonSerializable
         return $this->number;
     }
 
-    /**
-     * @param string $number
-     */
-    public function setNumber(string $number): void
-    {
-        $this->number = $number;
-    }
+    
 
     /**
      * @return string
@@ -165,13 +121,7 @@ class VehicleCreateDTO implements JsonSerializable
         return $this->capacity;
     }
 
-    /**
-     * @param string $capacity
-     */
-    public function setCapacity(string $capacity): void
-    {
-        $this->capacity = $capacity;
-    }
+   
 
     public function jsonSerialize(): array
     {

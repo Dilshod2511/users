@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Jobs\SendOtpSmsToPhoneJob;
 use App\Models\User;
+use app\Traits\CreateUser;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+    use CreateUser;
 
     public function index()
     {
@@ -40,7 +42,7 @@ class LoginController extends Controller
     public function send(Request $request)
     {
         $phone = $request->input('phone');
-        $otp = rand(100000, 999999);
+        $otp = $this->getOtp();
         $user = User::query()->where('phone', $phone)->first();
 
         if ($user == null) {

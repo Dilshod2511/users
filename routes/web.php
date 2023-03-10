@@ -29,6 +29,8 @@ Route::get('forget-password', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/', function () {
+       
+        auth()->logout();
         return view('site.user.form');
     });
     Route::resources([
@@ -37,4 +39,5 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
 

@@ -47,13 +47,7 @@ class UserCreateFormDTO implements JsonSerializable
         return $this->distance;
     }
 
-    /**
-     * @param string $distance
-     */
-    public function setDistance(string $distance): void
-    {
-        $this->distance = $distance;
-    }
+ 
 
     /**
      * @return string
@@ -63,13 +57,7 @@ class UserCreateFormDTO implements JsonSerializable
         return $this->workplace;
     }
 
-    /**
-     * @param string $workplace
-     */
-    public function setWorkplace(string $workplace): void
-    {
-        $this->workplace = $workplace;
-    }
+   
 
     /**
      * @return int
@@ -79,13 +67,7 @@ class UserCreateFormDTO implements JsonSerializable
         return $this->area_code;
     }
 
-    /**
-     * @param int $area_code
-     */
-    public function setAreaCode(string $area_code): void
-    {
-        $this->area_code = $area_code;
-    }
+  
 
     /**
      * @return mixed
@@ -95,13 +77,7 @@ class UserCreateFormDTO implements JsonSerializable
         return $this->date_of_membership;
     }
 
-    /**
-     * @param mixed $date_of_membership
-     */
-    public function setDateOfMembership($date_of_membership): void
-    {
-        $this->date_of_membership = $date_of_membership;
-    }
+ 
 
     /**
      * @return string
@@ -111,13 +87,7 @@ class UserCreateFormDTO implements JsonSerializable
         return $this->work_seniority;
     }
 
-    /**
-     * @param string $work_seniority
-     */
-    public function setWorkSeniority(string $work_seniority): void
-    {
-        $this->work_seniority = $work_seniority;
-    }
+ 
 
     /**
      * @return string
@@ -127,13 +97,7 @@ class UserCreateFormDTO implements JsonSerializable
         return $this->awards;
     }
 
-    /**
-     * @param string $awards
-     */
-    public function setAwards(string $awards): void
-    {
-        $this->awards = $awards;
-    }
+
 
     /**
      * @return string
@@ -143,13 +107,7 @@ class UserCreateFormDTO implements JsonSerializable
         return $this->photo;
     }
 
-    /**
-     * @param string $photo
-     */
-    public function setPhoto(string $photo): void
-    {
-        $this->photo = $photo;
-    }
+ 
 
     /**
      * @return string
@@ -159,13 +117,7 @@ class UserCreateFormDTO implements JsonSerializable
         return $this->driver_category;
     }
 
-    /**
-     * @param string $driver_category
-     */
-    public function setDriverCategory(string $driver_category): void
-    {
-        $this->driver_category = $driver_category;
-    }
+
 
     public function jsonSerialize(): array
     {

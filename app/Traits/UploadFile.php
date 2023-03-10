@@ -1,7 +1,6 @@
 <?php
 
-
-namespace App\Traits;
+namespace app\Traits;
 
 
 use Illuminate\Support\Facades\File;
@@ -42,4 +41,6 @@ trait UploadFile
         }
 
     }
+
+   
 }

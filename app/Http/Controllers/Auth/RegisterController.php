@@ -9,6 +9,7 @@ use App\Http\Requests\VerifyRequest;
 use App\Models\User;
 use Exception;
 use App\Http\Services\SendSms;
+use app\Traits\CreateUser;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -18,6 +19,9 @@ use Illuminate\Testing\Fluent\Concerns\Has;
 
 class RegisterController extends Controller
 {
+
+    use CreateUser;
+
     public function index()
     {
         return view('auth.register');
@@ -30,26 +34,7 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
 
-        $otp = rand(100000, 999999);
-        $validate = $request->validated();
-        $DTO = new UserCreateDTO(
-            Hash::make($validate['password']),
-            $otp,
-            $validate['phone'],
-            $validate['email'],
-            $validate['full_name']
-        );
-
-
-        //Bu klass hich nima qimiyapti oddiy Jobi dispatch qisezam bo'ladi
-        (new SendSms($request->input('phone'), $otp))->sendSmsPhone();
-
-
-        DB::transaction(function () use ($DTO) {
-            User::query()->create($DTO->jsonSerialize());
-        });
-
-        $request->session()->put('user.phone', $DTO->getPhone());
+        $new=$this->createUserRegister($request);
 
         return view('auth.verify');
     }
