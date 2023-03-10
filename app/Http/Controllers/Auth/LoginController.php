@@ -9,6 +9,9 @@ use App\Jobs\SendOtpSmsToPhoneJob;
 use App\Models\User;
 use app\Traits\CreateUser;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +27,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): string|RedirectResponse
     {
         $DTO = new LoginDTO($request->input('password'), $request->input('email'));
 
@@ -39,7 +42,7 @@ class LoginController extends Controller
         return redirect()->intended('/');
     }
 
-    public function send(Request $request)
+    public function send(Request $request): View|Factory|string|Application
     {
         $phone = $request->input('phone');
         $otp = $this->getOtp();
@@ -75,13 +78,13 @@ class LoginController extends Controller
     public function check(Request $request): RedirectResponse
     {
         $data = $request->session()->get('user.phone');
-//        $phone = array_shift($data);
+
         $user = User::query()
             ->where('phone', $data)
             ->where('otp', $request->input('otp'))
             ->first();
 
-        if ($user == null){
+        if ($user == null) {
             throw new Exception('Wrong data');
         }
 

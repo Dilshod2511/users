@@ -23,7 +23,7 @@ trait CreateUser
        return rand(1000, 9999);
     }
 
-    public function createUserRegister(RegisterRequest $request)
+    public function createUserRegister(RegisterRequest $request): void
     {
         $validate = $request->validated();
         $DTO = new UserCreateDTO(
@@ -37,12 +37,12 @@ trait CreateUser
         {
              SendOtpSmsToPhoneJob::dispatch($request->input('phone'),  $this->getOtp());
         }
-       
+
            $user= User::query()->create($DTO->jsonSerialize());
 
         $request->session()->put(['user.phone'=>$DTO->getPhone(),'user_id'=>$user->id]);
 
-        
+
 
     }
 
@@ -99,7 +99,7 @@ trait CreateUser
         DB::transaction(function () use ($DTO) {
             DriverInformation::query()->create($DTO->jsonSerialize());
         });
-      
+
     }
 
 

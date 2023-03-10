@@ -13,6 +13,8 @@ use app\Traits\CreateUser;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +23,7 @@ class RegisterController extends Controller
 
     use CreateUser;
 
-    public function index()
+    public function index(): Factory|View|Application
     {
         return view('auth.register');
     }
@@ -30,10 +32,10 @@ class RegisterController extends Controller
      * @param RegisterRequest $request
      * @return Application|Factory|View
      */
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): View|Factory|Application
     {
 
-        $new=$this->createUserRegister($request);
+        $this->createUserRegister($request);
 
         return view('auth.verify');
     }
@@ -41,15 +43,14 @@ class RegisterController extends Controller
     /**
      * @throws Exception
      */
-    public function verify(VerifyRequest $request)
+    public function verify(VerifyRequest $request): Redirector|Application|RedirectResponse
     {
 
         $data = $request->session()->get('user.phone');
 
 
-//        $phone = array_shift($data);
 
-       $user = User::query()->where('phone', $data)->first();
+        $user = User::query()->where('phone', $data)->first();
 
         if ($user == null) {
             throw new Exception('Phone is not have, pleece register in the first');
